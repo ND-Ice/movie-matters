@@ -22,7 +22,7 @@ export default function Trending() {
 
   useEffect(() => {
     getSimilarMovies();
-  }, [currentPage]);
+  }, [currentPage, movies]);
 
   const getSimilarMovies = async () => {
     try {

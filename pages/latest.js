@@ -21,7 +21,7 @@ export default function Latest() {
 
   useEffect(() => {
     getLatestMovies();
-  }, [currentPage]);
+  }, [currentPage, movies]);
 
   const getLatestMovies = async () => {
     try {

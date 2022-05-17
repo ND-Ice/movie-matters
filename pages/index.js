@@ -22,7 +22,7 @@ export default function Home() {
 
   useEffect(() => {
     getMovies();
-  }, [currentPage]);
+  }, [currentPage, movies]);
 
   const getMovies = async () => {
     try {

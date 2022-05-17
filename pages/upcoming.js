@@ -22,7 +22,7 @@ export default function Upcoming() {
 
   useEffect(() => {
     getUpcomingMovies();
-  }, [currentPage]);
+  }, [currentPage, movies]);
 
   const getUpcomingMovies = async () => {
     try {

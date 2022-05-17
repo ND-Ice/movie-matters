@@ -31,7 +31,7 @@ export default function MovieDetails() {
   useEffect(() => {
     getMovieDetails();
     getSimilarMovies();
-  }, [movieId]);
+  }, [movieId, movieDetails, similarMovies]);
 
   const getMovieDetails = async () => {
     try {

@@ -21,7 +21,7 @@ export default function Trending() {
 
   useEffect(() => {
     getTrendingMovies();
-  }, [currentPage]);
+  }, [currentPage, movies]);
 
   const getTrendingMovies = async () => {
     try {

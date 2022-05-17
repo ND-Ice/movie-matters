@@ -56,6 +56,7 @@ function CarouselItem({ item }) {
           src={`https://image.tmdb.org/t/p/w500${
             item?.backdrop_path || item?.porter_path
           }`}
+          alt="carousel banner"
           height="300px"
           zIndex="-1"
           objectFit="cover"
