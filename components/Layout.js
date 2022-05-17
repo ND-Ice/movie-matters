@@ -7,7 +7,7 @@ const variants = {
   enter: {
     opacity: 1,
     transition: {
-      duration: 0.6,
+      duration: 1,
     },
   },
   exit: { opacity: 0 },

@@ -2,7 +2,11 @@ import { Box, Flex } from "@chakra-ui/react";
 
 export default function Genres({ genres }) {
   return (
-    <Flex gap=".5rem" wrap="wrap">
+    <Flex
+      gap=".5rem"
+      wrap="wrap"
+      justify={{ base: "center", md: "flex-start" }}
+    >
       {genres?.map((genre, index) => (
         <Box
           key={index}

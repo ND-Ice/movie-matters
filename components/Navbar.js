@@ -42,7 +42,7 @@ export default function Navbar() {
                 letterSpacing={1}
                 color="red.500"
               >
-                ATTERS
+                ATTER
               </Heading>
             </Box>
           </Flex>

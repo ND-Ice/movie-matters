@@ -1,4 +1,3 @@
-import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 import {
   Paginator,
   Container,
@@ -6,14 +5,15 @@ import {
   Next,
   PageGroup,
 } from "chakra-paginator";
+import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
 
 export default function Pagination({
   currentPage,
   onPageChange,
   pagesQuantity,
 }) {
-  const outerLimit = 2;
-  const innerLimit = 2;
+  const outerLimit = 3;
+  const innerLimit = 3;
 
   return (
     <Paginator
@@ -24,20 +24,13 @@ export default function Pagination({
       innerLimit={innerLimit}
       activeStyles={activeStyles}
       normalStyles={normalStyles}
-      separatorStyles={separatorStyles}
     >
       <Container align="center" justify="space-between" w="full">
-        <Previous mr={1}>
+        <Previous>
           <ArrowLeftIcon />
         </Previous>
-        <PageGroup
-          isInline
-          isTruncated
-          align="center"
-          w="full"
-          justify="center"
-        />
-        <Next ml={1}>
+        <PageGroup isInline align="center" w="full" justify="center" />
+        <Next>
           <ArrowRightIcon />
         </Next>
       </Container>
@@ -66,10 +59,4 @@ const activeStyles = {
   },
   bg: "red.500",
   color: "white",
-};
-
-const separatorStyles = {
-  ...baseStyles,
-  fontSize: "xs",
-  p: 0,
 };

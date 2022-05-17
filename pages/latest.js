@@ -1,15 +1,15 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Flex } from "@chakra-ui/react";
 import { usePaginator } from "chakra-paginator";
 
-import Movie from "../components/Movie";
 import moviesApi from "../api/movies";
-import Pagination from "../components/Pagination";
+
+import Movie from "../components/Movie";
 import scrollToTop from "../components/utilities/scrolltoTop";
 import GridWrapper from "../components/GridWrapper";
 import Layout from "../components/Layout";
+import ResponsivePagination from "../components/ResponsivePagination";
 
 export default function Latest() {
   const router = useRouter();
@@ -21,7 +21,7 @@ export default function Latest() {
 
   useEffect(() => {
     getLatestMovies();
-  }, [currentPage, movies]);
+  }, [currentPage]);
 
   const getLatestMovies = async () => {
     try {
@@ -37,10 +37,20 @@ export default function Latest() {
     scrollToTop();
   };
 
+  const handlePrev = () => {
+    setCurrentPage(currentPage - 1);
+    scrollToTop();
+  };
+
+  const handleNext = () => {
+    setCurrentPage(currentPage + 1);
+    scrollToTop();
+  };
+
   return (
     <Layout>
       <Head>
-        <title>Latest Updates - Master-Byte</title>
+        <title>Latest Updates - Movies Matter</title>
         <meta
           name="description"
           content="Discover the popular movies that crowd was going crazy on."
@@ -57,13 +67,13 @@ export default function Latest() {
           />
         ))}
       </GridWrapper>
-      <Flex mt={10} justify="flex-end">
-        <Pagination
-          pagesQuantity={movies?.total_pages}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-      </Flex>
+      <ResponsivePagination
+        pagesQuantity={movies?.total_pages}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+        onNext={handleNext}
+        onPrev={handlePrev}
+      />
     </Layout>
   );
 }

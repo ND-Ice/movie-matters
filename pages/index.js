@@ -1,16 +1,17 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { Flex, Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import { usePaginator } from "chakra-paginator";
+
+import moviesApi from "../api/movies";
 
 import Movie from "../components/Movie";
 import Carousel from "../components/Carousel";
-import Pagination from "../components/Pagination";
-import moviesApi from "../api/movies";
 import scrollToTop from "../components/utilities/scrolltoTop";
 import GridWrapper from "../components/GridWrapper";
 import Layout from "../components/Layout";
+import ResponsivePagination from "../components/ResponsivePagination";
 
 export default function Home() {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function Home() {
 
   useEffect(() => {
     getMovies();
-  }, [currentPage, movies]);
+  }, [currentPage]);
 
   const getMovies = async () => {
     try {
@@ -38,10 +39,20 @@ export default function Home() {
     scrollToTop();
   };
 
+  const handlePrev = () => {
+    setCurrentPage(currentPage - 1);
+    scrollToTop();
+  };
+
+  const handleNext = () => {
+    setCurrentPage(currentPage + 1);
+    scrollToTop();
+  };
+
   return (
     <Layout>
       <Head>
-        <title>Home - Master-Byte</title>
+        <title>Home - Movies Matter</title>
         <meta
           name="description"
           content="Discover the popular movies that crowd was going crazy on."
@@ -62,13 +73,13 @@ export default function Home() {
           />
         ))}
       </GridWrapper>
-      <Flex mt={10} justify="flex-end">
-        <Pagination
-          pagesQuantity={500}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-      </Flex>
+      <ResponsivePagination
+        pagesQuantity={500}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+        onPrev={handlePrev}
+        onNext={handleNext}
+      />
     </Layout>
   );
 }
