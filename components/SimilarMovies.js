@@ -2,19 +2,15 @@ import React from "react";
 import { useRouter } from "next/router";
 import { Box, Heading } from "@chakra-ui/react";
 import Movie from "./Movie";
+import GridWrapper from "./GridWrapper";
 
 export default function SimilarMovies({ movies }) {
   const { results: movieData } = movies;
   const router = useRouter();
   return (
     <Box mt={10}>
-      <Heading>Related Movies</Heading>
-      <Box
-        display="grid"
-        gridTemplateColumns="repeat(5,1fr)"
-        gap="1rem"
-        my={10}
-      >
+      <Heading mb="2rem">Related Movies</Heading>
+      <GridWrapper>
         {movieData?.map((movie) => (
           <Movie
             key={movie?.id}
@@ -22,7 +18,7 @@ export default function SimilarMovies({ movies }) {
             onNavigate={() => router.push(`/movie-details/${movie?.id}`)}
           />
         ))}
-      </Box>
+      </GridWrapper>
     </Box>
   );
 }
