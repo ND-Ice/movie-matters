@@ -7,7 +7,7 @@ import { usePaginator } from "chakra-paginator";
 import Movie from "../components/Movie";
 import moviesApi from "../api/movies";
 import Pagination from "../components/Pagination";
-import scrollToTop from "../components/utilities/ScrolltoTop";
+import scrollToTop from "../components/utilities/scrolltoTop";
 import GridWrapper from "../components/GridWrapper";
 import Layout from "../components/Layout";
 

@@ -8,7 +8,7 @@ import Movie from "../components/Movie";
 import Carousel from "../components/Carousel";
 import Pagination from "../components/Pagination";
 import moviesApi from "../api/movies";
-import scrollToTop from "../components/utilities/ScrolltoTop";
+import scrollToTop from "../components/utilities/scrolltoTop";
 import GridWrapper from "../components/GridWrapper";
 import Layout from "../components/Layout";
 

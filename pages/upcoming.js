@@ -5,7 +5,7 @@ import { Flex } from "@chakra-ui/react";
 import { usePaginator } from "chakra-paginator";
 
 import Movie from "../components/Movie";
-import scrollToTop from "../components/utilities/ScrolltoTop";
+import scrollToTop from "../components/utilities/scrolltoTop";
 import Pagination from "../components/Pagination";
 import GridWrapper from "../components/GridWrapper";
 import Layout from "../components/Layout";
