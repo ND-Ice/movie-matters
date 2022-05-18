@@ -1,17 +1,17 @@
 import styled from "@emotion/styled";
 import Head from "next/head";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { StarIcon, RepeatClockIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
   Flex,
   Heading,
-  Image,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { StarIcon, RepeatClockIcon } from "@chakra-ui/icons";
 
 import Genres from "../../components/Genres";
 import timeConverter from "../../components/utilities/timeConverter";
@@ -26,7 +26,6 @@ export default function MovieDetails() {
   const movieId = router.query.id;
   const [movieDetails, setMovieDetails] = useState({});
   const [similarMovies, setSimilarMovies] = useState({});
-  console.log(similarMovies);
 
   useEffect(() => {
     getMovieDetails();
@@ -59,9 +58,15 @@ export default function MovieDetails() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Flex gap={10} direction={{ base: "column", md: "row" }}>
-        <StyledImage
-          src={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`}
-        />
+        <ImageWrapper>
+          <Image
+            src={`https://image.tmdb.org/t/p/w500${movieDetails?.poster_path}`}
+            alt="movie wrapper"
+            objectFit="contain"
+            layout="fill"
+            priority
+          />
+        </ImageWrapper>
         <Box>
           <Heading
             as="h1"
@@ -118,7 +123,8 @@ export default function MovieDetails() {
   );
 }
 
-const StyledImage = styled(Image)`
+const ImageWrapper = styled.div`
+  width: 300px;
   height: 400px;
-  object-fit: contain;
+  position: relative;
 `;

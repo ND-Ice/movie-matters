@@ -1,15 +1,20 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { GridItem, Badge, Text, Image } from "@chakra-ui/react";
+import Image from "next/image";
+import { GridItem, Badge, Text } from "@chakra-ui/react";
 import { FiPlay } from "react-icons/fi";
 
 export default function Movie({ movie, onNavigate }) {
   return (
     <StyledGridItem>
-      <StyledImage
-        src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
-        alt="movie banner"
-      />
+      <ImageWrapper>
+        <Image
+          src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+          alt="movie banner"
+          layout="fill"
+          objectFit="cover"
+        />
+      </ImageWrapper>
       {movie?.adult && (
         <StyledBadge colorScheme="red" variant="solid">
           18+
@@ -35,12 +40,11 @@ const Overlay = styled.div`
   opacity: 0;
 `;
 
-const StyledImage = styled(Image)`
+const ImageWrapper = styled.div`
   width: 100%;
   height: 300px;
-  object-fit: cover;
-  object-position: center;
   transition: all 300ms ease;
+  position: relative;
 `;
 
 const StyledGridItem = styled(GridItem)`
@@ -53,7 +57,7 @@ const StyledGridItem = styled(GridItem)`
     opacity: 1;
   }
 
-  &:hover ${StyledImage} {
+  &:hover ${ImageWrapper} {
     transform: scale(1.1);
   }
 `;

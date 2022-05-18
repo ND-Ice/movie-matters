@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-import { Box, Heading, Image } from "@chakra-ui/react";
+import Image from "next/image";
+import { Box, Heading } from "@chakra-ui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 
@@ -52,16 +53,23 @@ function CarouselItem({ item }) {
             {item?.title}
           </Heading>
         </Box>
-        <Image
-          src={`https://image.tmdb.org/t/p/w500${
-            item?.backdrop_path || item?.porter_path
-          }`}
-          alt="carousel banner"
+        <Box
+          position="relative"
           height="300px"
           zIndex="-1"
-          objectFit="cover"
           borderRadius="1rem"
-        />
+          overflow="hidden"
+        >
+          <Image
+            src={`https://image.tmdb.org/t/p/w500${
+              item?.backdrop_path || item?.porter_path
+            }`}
+            alt="carousel banner"
+            layout="fill"
+            objectFit="cover"
+            priority
+          />
+        </Box>
       </Box>
     </SwiperSlide>
   );

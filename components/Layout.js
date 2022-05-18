@@ -16,11 +16,11 @@ const variants = {
 export default function Layout({ children }) {
   return (
     <motion.div
-      variants={variants}
-      initial="hidden"
-      animate="enter"
-      exit="exit"
-      style={{ maxWidth: "1500px", margin: "auto" }}
+      // variants={variants}
+      // initial="hidden"
+      // animate="enter"
+      // exit="exit"
+      style={{ maxWidth: "1500px", margin: "auto", minHeight: "110vh" }}
     >
       <Navbar />
       <Box p={{ base: "1rem", md: "1rem 5rem" }} overflow="hidden">
