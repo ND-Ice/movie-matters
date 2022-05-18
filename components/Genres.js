@@ -7,9 +7,9 @@ export default function Genres({ genres }) {
       wrap="wrap"
       justify={{ base: "center", md: "flex-start" }}
     >
-      {genres?.map((genre, index) => (
+      {genres?.map((genre) => (
         <Box
-          key={index}
+          key={genre?.id}
           bg="red.500"
           color="white"
           fontSize="md"

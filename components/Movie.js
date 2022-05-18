@@ -13,6 +13,8 @@ export default function Movie({ movie, onNavigate }) {
           alt="movie banner"
           layout="fill"
           objectFit="cover"
+          placeholder="blur"
+          blurDataURL="https://cdn.pixabay.com/photo/2015/06/24/02/12/the-blurred-819388_1280.jpg"
         />
       </ImageWrapper>
       {movie?.adult && (

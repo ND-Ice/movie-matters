@@ -7,6 +7,9 @@ import GridWrapper from "./GridWrapper";
 export default function SimilarMovies({ movies }) {
   const { results: movieData } = movies;
   const router = useRouter();
+
+  if (!movieData || movieData?.length === 0) return;
+
   return (
     <Box mt={10}>
       <Heading mb="2rem">Related Movies</Heading>
