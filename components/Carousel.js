@@ -92,7 +92,7 @@ function CarouselItem({ item, onNavigate }) {
             borderRadius="1rem"
             fontSize="2rem"
             transition="all 300ms ease"
-            _hover={{ borderColor: "red.500", bg: "red.500" }}
+            _hover={{ borderColor: "red.500", bg: "red.500", color: "white" }}
             onClick={onNavigate}
           >
             <FiPlay />
