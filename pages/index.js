@@ -46,8 +46,9 @@ export default function Home({ movies, error }) {
 }
 
 export const getServerSideProps = async () => {
+  const PAGE_NUMBER = 1;
   try {
-    const response = await moviesApi.getPopular(1);
+    const response = await moviesApi.getPopular(PAGE_NUMBER);
     return { props: { movies: response.data } };
   } catch (error) {
     return {
