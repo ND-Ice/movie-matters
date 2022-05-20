@@ -1,21 +1,65 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Heading } from "@chakra-ui/react";
+import { usePaginator } from "chakra-paginator";
 import Error from "next/error";
 
 import moviesApi from "../api/movies";
 
 import Movie from "../components/Movie";
 import Carousel from "../components/Carousel";
+import scrollToTop from "../components/utilities/scrolltoTop";
 import GridWrapper from "../components/GridWrapper";
 import Layout from "../components/Layout";
+import ResponsivePagination from "../components/ResponsivePagination";
 
-export default function Home({ movies, error }) {
+export default function Home() {
   const router = useRouter();
+  const [movies, setMovies] = useState([]);
+  const [errorMessage, setErrorMessage] = useState({});
 
-  if (error)
-    return <Error statusCode={error?.errorCode} title={error?.message} />;
+  const { currentPage, setCurrentPage } = usePaginator({
+    initialState: { currentPage: 1 },
+  });
+
+  useEffect(() => {
+    getMovies();
+  }, [currentPage]);
+
+  const getMovies = async () => {
+    try {
+      const response = await moviesApi.getPopular(currentPage);
+      setMovies(response.data);
+    } catch (error) {
+      setErrorMessage(error);
+    }
+  };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    scrollToTop();
+  };
+
+  const handlePrev = () => {
+    setCurrentPage(currentPage - 1);
+    scrollToTop();
+  };
+
+  const handleNext = () => {
+    setCurrentPage(currentPage + 1);
+    scrollToTop();
+  };
+
+  if (errorMessage?.response)
+    return (
+      <Error
+        statusCode={errorMessage?.response?.status}
+        title={
+          errorMessage?.response?.data?.status_message || "An eror occured."
+        }
+      />
+    );
 
   return (
     <Layout>
@@ -41,23 +85,13 @@ export default function Home({ movies, error }) {
           />
         ))}
       </GridWrapper>
+      <ResponsivePagination
+        pagesQuantity={500}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+        onPrev={handlePrev}
+        onNext={handleNext}
+      />
     </Layout>
   );
 }
-
-export const getServerSideProps = async () => {
-  const PAGE_NUMBER = 1;
-  try {
-    const response = await moviesApi.getPopular(PAGE_NUMBER);
-    return { props: { movies: response.data } };
-  } catch (error) {
-    return {
-      props: {
-        error: {
-          errorCode: 500,
-          message: "Something went wrong. Please try again later.",
-        },
-      },
-    };
-  }
-};
